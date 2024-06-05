@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Customer } from '../models/customer';
 
+
 export const createCustomer = async (req: Request, res: Response) => {
     const { name } = req.body;
     const customer = new Customer({ name, balance: 0 });
