@@ -19,6 +19,16 @@ describe('Customer API', () => {
         expect(response.body.balance).toBe(0);
     });
 
+    it('should handle very long customer names', async () => {
+        const longName = 'A'.repeat(256); // Assuming 255 chars is the limit
+        const response = await request(app)
+            .post('/api/customers/create')
+            .send({ name: longName });
+
+        expect(response.status).toBe(201);
+        expect(response.body.name).toBe(longName);
+    });
+
     it('should deposit money to customer account', async () => {
         const customerResponse = await request(app)
             .post('/api/customers/create')
@@ -145,6 +155,5 @@ describe('Customer API', () => {
 
         expect(response.body.totalBalance).toBe(100);
     });
-
 
 });
