@@ -12,6 +12,9 @@ export const createCustomer = async (req: Request, res: Response) => {
 export const deposit = async (req: Request, res: Response) => {
     try {
         const { id, amount } = req.body;
+        if (amount <= 0) {
+            return res.status(400).send({ message: 'Deposit amount must be positive' });
+        }
         const customer = await Customer.findById(id);
         if (!customer) {
             return res.status(404).send({ message: 'Customer not found' });
@@ -64,7 +67,7 @@ export const getBankBalance = async (_req: Request, res: Response) => {
         const totalBalance = customers.reduce((acc, customer) => acc + customer.balance, 0);
         res.send({ totalBalance });
     } catch (error) {
-        console.error('Error fetching bank balance:', error);
+        console.error('Error while fetching bank balance:', error);
         res.status(500).send({ message: 'Failed to fetch bank balance' });
     }
 };
