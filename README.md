@@ -3,7 +3,7 @@
 
 # Bank Application
 
-This is a simple bank application that allows you to manage customer balances with deposit and withdrawal functionalities. The application is built with Express.js for the backend, and MongoDB for the database.
+This is a simple bank application that allows you to manage customer balances with deposit and withdrawal functionalities. The application is built using Typescript with Express for the backend, and MongoDB for the database.
 
 ## Features
 
